@@ -1,12 +1,25 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import ProductDataService from "../../services/api";
-import Card from "../../components/Product/Card";
-import ManageProduct from "../../components/Product/ManageProduct";
 import AddProduct from "../AddProduct/AddProduct";
-import {useList} from "react-firebase-hooks/database";
+import ProductsList from "../AllProducts/ProductsList";
 
 export default function Dashboard() {
-    const [products, loading, error] = useList(ProductDataService.getAll());
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+
+        getProducts();
+    }, []);
+
+    const getProducts = () => {
+        ProductDataService.getAll()
+            .then(response => {
+                setProducts(Object.values(response.data));
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
 
     return (
         <div className="container">
@@ -19,16 +32,7 @@ export default function Dashboard() {
                     <AddProduct/>
                 </div>
             </section>
-            <section className="row justify-content-center">
-                <div className="col-12 ">
-                    <h2 className="pb-4 my-4 text-center">All Games</h2>
-                </div>
-                {products.slice(0).reverse().map((item, index) => (
-                    <div className="col-xs-12 col-sm-12 col-md-4 py-md-3 mb-sm-3" key={index}>
-                        <ManageProduct product={item}/>
-                    </div>
-                ))}
-            </section>
+            <ProductsList data={products} dashboard/>
         </div>
     );
 };

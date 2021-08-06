@@ -1,31 +1,31 @@
-import React, {useEffect} from "react";
-
+import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import PageNotFound from "../404/PageNotFound";
-import firebase from "firebase/app";
+import ProductDataService from "../../services/api";
 
 export default function Product() {
-    const dbRef = firebase.database().ref('/products');
-    const [product, setProduct] = React.useState([]);
-    //const [value, loading, error] = useObject(ProductDataService.getById(id));
-    let {id} = useParams();
+    const [product, setProduct] = useState([]);
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
 
+    let {id} = useParams();
 
     useEffect(() => {
         getProductById();
     }, [id]);
     const getProductById = () => {
-        dbRef.child(id).get().then((snapshot) => {
-            if (snapshot.exists()) {
-                setProduct(snapshot.val());
-            } else {
-                console.log("No data available");
-            }
-        }).catch(e => {
-            console.log(e);
-        });
-    }
-
+        ProductDataService.get(id)
+            .then(
+                (result) => {
+                    setIsLoaded(true);
+                    setProduct(result.data);
+                },
+                (error) => {
+                    setIsLoaded(true);
+                    setError(error);
+                }
+            )
+    };
     /*todo write this function*/
     const addToCart = (id) => {
         console.log(id)
@@ -47,10 +47,10 @@ export default function Product() {
                                 </p>
                                 <p className="card-text">{product.description}</p>
                                 <p className="card-text">Category:
-                                    { product.category ?
-                                    <span
-                                    className="badge badge-secondary text-lowercase"> {product.category}</span>
-                                    : " n/a"
+                                    {product.category ?
+                                        <span
+                                            className="badge badge-secondary text-lowercase"> {product.category}</span>
+                                        : " n/a"
                                     }
                                 </p>
                             </div>

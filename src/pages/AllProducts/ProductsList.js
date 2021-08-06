@@ -1,67 +1,46 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import ProductDataService from "../../services/api";
 import Card from "../../components/Product/Card";
-import {useList} from "react-firebase-hooks/database";
+import ManageProduct from "../../components/Product/ManageProduct";
 
-/*
-
-export default function ProductsList() {
+export default function ProductsList({data, dashboard}) {
     const [products, setProducts] = useState([]);
-
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        getProducts();
+        getProducts()
     }, []);
 
     const getProducts = () => {
         ProductDataService.getAll()
-            .then(response => {
-
-                setProducts(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
+            .then(
+                (result) => {
+                    setIsLoaded(true);
+                    setProducts(Object.entries(result.data));
+                },
+                (error) => {
+                    setIsLoaded(true);
+                    setError(error);
+                }
+            )
     };
-
-
     return (
         <div className="container">
             <section className="row justify-content-center">
                 <div className="col-12 ">
                     <h1 className="pb-4 my-4 text-center">All Games</h1>
                 </div>
-                {products.slice(0).reverse().map((item) => (
-                    <div className="col-xs-12 col-sm-12 col-md-4 py-md-3 mb-sm-3" key={item.id}>
-                        <Card product={item} link/>
-                    </div>
-                ))}
-            </section>
-        </div>
-    );
-};*/
-
-const ProductList = () => {
-    const [products, loading, error] = useList(ProductDataService.getAll());
-
-    return (
-        <div className="container">
-            <section className="row justify-content-center">
-                <div className="col-12 ">
-                    <h1 className="pb-4 my-4 text-center">All Games</h1>
-                    {error && <strong>Error: {error}</strong>}
-                    {loading && <span>Loading...</span>}
-                </div>
-                {!loading &&
-                products &&
-                products.map((item, index) => (
-                    <div className="col-xs-12 col-sm-12 col-md-4 py-md-3 mb-sm-3" key={index}>
-                        <Card product={item} link/>
-                    </div>
-                ))}
+                {
+                    products.map((item, index) => (
+                        <div className="col-xs-12 col-sm-12 col-md-4 py-md-3 mb-sm-3" key={index}>
+                            {dashboard ?
+                                <ManageProduct product={item}/>
+                                :
+                                <Card product={item} link/>}
+                        </div>
+                    ))}
             </section>
         </div>
     );
 };
-
-export default ProductList;
