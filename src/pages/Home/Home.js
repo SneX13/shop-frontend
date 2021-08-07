@@ -31,7 +31,7 @@ export default function Home() {
                     <h1 className="display-4 fw-normal">Need new challenges?</h1>
                     <p className="lead fw-normal">
                         Explore all the most exciting new board games coming out this year.
-                        Here are the best upcoming games to keep an eye on.</p>
+                        Here are the best upcoming games to keep an eye on. Find your next adventure here! </p>
                     <a className="btn btn-outline-secondary" href="/featured">Coming soon</a>
                 </div>
                 <div className="product-device shadow-sm d-none d-md-block"></div>
