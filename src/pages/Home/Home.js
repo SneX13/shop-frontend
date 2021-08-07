@@ -26,12 +26,12 @@ export default function Home() {
 
     return (
         <div className="container-fluid">
-            <div className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+            <div className="position-relative overflow-hidden p-3 p-md-5 text-center bg-light">
                 <div className="col-md-5 p-lg-5 mx-auto my-5">
                     <h1 className="display-4 fw-normal">Need new challenges?</h1>
                     <p className="lead fw-normal">
-                        Explore all the most exciting new games coming out this year.
-                        Here are the best upcoming games to keep an eye on</p>
+                        Explore all the most exciting new board games coming out this year.
+                        Here are the best upcoming games to keep an eye on.</p>
                     <a className="btn btn-outline-secondary" href="/featured">Coming soon</a>
                 </div>
                 <div className="product-device shadow-sm d-none d-md-block"></div>
