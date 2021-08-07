@@ -10,7 +10,7 @@
 }
 
 /*
- * Dummy devices (replace them with your own or something else entirely!)
+ * Dummy devices (replace this with dices)
  todo remove this
  */
 
@@ -44,21 +44,6 @@
     background-color: #D26852;
 }
 
-
-/*
- * Extra utilities
- todo remove this when card component is added
- */
-
-.flex-equal > * {
-    flex: 1;
-}
-
-@media (min-width: 768px) {
-    .flex-md-equal > * {
-        flex: 1;
-    }
-}
 
 /* Sticky footer styles
 -------------------------------------------------- */

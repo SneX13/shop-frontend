@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {NavLink, useHistory} from "react-router-dom";
-import logo from "../../logo1.png"
+import logo from "../../logo.png"
 
 export default function Header() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -23,8 +23,8 @@ export default function Header() {
         <header className="sticky-top pb-1">
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
-                    <a className="navbar-brand py-2 mh-25" href="/" aria-label="Product">
-                        <img src={logo} alt="..." />
+                    <a className="navbar-brand" href="/" aria-label="Product">
+                        <img src={logo} alt="..."/>
                     </a>
                     <form className="form-inline my-2 my-lg-0 d-flex" onSubmit={searchGames}>
                         <div className="input-group">
@@ -38,7 +38,7 @@ export default function Header() {
                             />
                             <div className="input-group-append">
                                 <button className="btn btn-sm btn-outline-secondary" type="submit"
-                                        disabled={loader || searchTerm.trim() === ""}>
+                                        disabled={loader || searchTerm.trim() === ""} aria-label="Search">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                          fill="none"
                                          stroke="currentColor" strokeWidth="2" strokeLinecap="round"

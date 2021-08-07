@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import React, {Component} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min';
@@ -15,6 +14,7 @@ import AboutUs from "./pages/About/AboutUs";
 import Contact from "./pages/Contact/Contact";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import EditProduct from "./pages/Dashboard/EditProduct";
+import FeaturedGames from "./pages/Featured/FeaturedGames";
 
 class App extends Component {
     render() {
@@ -31,6 +31,7 @@ class App extends Component {
                     <Route path="/about" component={AboutUs}/>
                     <Route path="/contact" component={Contact}/>
                     <Route path="/dashboard" component={Dashboard}/>
+                    <Route path="/featured" component={FeaturedGames}/>
                 </Switch>
                 <Footer/>
             </div>
