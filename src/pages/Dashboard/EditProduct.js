@@ -174,6 +174,4 @@ export default function EditProduct() {
             <PageNotFound/>
 
     )
-
-
 }

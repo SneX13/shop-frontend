@@ -1,52 +1,62 @@
 import React, {useState} from "react";
 import ProductDataService from "../../services/api";
 
-const AddProduct = () => {
-    const initialState = {
-        title: "",
-        description: "",
-        image: "",
-        category: "",
-        quantity: "",
-        price: "",
+export default function AddProduct() {
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
+    const [image, setImage] = useState("")
+    const [category, setCategory] = useState("")
+    const [quantity, setQuantity] = useState("")
+    const [price, setPrice] = useState("")
+    const [loader, setLoader] = useState(false)
+    const [submitted, setSubmitted] = useState(false)
+    const data = {
+        title: title,
+        description: description,
+        category: category,
+        image: image,
+        quantity: quantity,
+        price: price,
     };
-    const [product, setProduct] = useState(initialState);
-    const [submitted, setSubmitted] = useState(false);
 
-    const handleInputChange = event => {
-        const {name, value} = event.target;
-        setProduct({...product, [name]: value});
-    };
-
-    const saveProduct = () => {
-        var data = {
-            title: product.title,
-            description: product.description,
-            image: product.image,
-            category: product.category,
-            quantity: product.quantity,
-            price: product.price,
-        };
-
+    function handleSubmit(e) {
+        e.preventDefault();
+        setLoader(true)
         ProductDataService.create((data))
-            .then(() => {
-                setSubmitted(true);
+            .then(function (response) {
+                //todo push response.data to parent or update store holding all games
             })
-            .catch(e => {
-                console.log(e);
+            .catch(function (err) {
+                console.log("ERROR:", err);
+            })
+            .finally(() => {
+                setTitle("")
+                setDescription("")
+                setImage("")
+                setCategory("")
+                setQuantity("")
+                setPrice("")
+                setLoader(false)
+                setSubmitted(true);
             });
-    };
+    }
 
     const newProduct = (e) => {
         e.preventDefault()
-        setProduct(initialState);
+        setTitle("")
+        setDescription("")
+        setImage("")
+        setCategory("")
+        setQuantity("")
+        setPrice("")
+        setLoader(false);
         setSubmitted(false);
     };
 
     return (
         <div className="submit-form">
             {submitted ? (
-                <div>
+                <div className="text-center">
                     <h4>You have added new game successfully!</h4>
                     <button className="btn btn-success" onClick={newProduct}>
                         Add another game
@@ -54,82 +64,48 @@ const AddProduct = () => {
                 </div>
             ) : (
                 <div>
-                    <form className="card px-4 py-3">
+                    <form className="card px-4 py-3" onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="title">Title</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="title"
-                                required
-                                value={product.title}
-                                onChange={handleInputChange}
-                                name="title"
+                            <input id="title" type="text" name="title" value={title} className="form-control"
+                                   onChange={(e) => setTitle(e.target.value)} required
                             />
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="description">Description</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="description"
-                                required
-                                value={product.description}
-                                onChange={handleInputChange}
-                                name="description"
+                            <input id="description" type="text" name="description" value={description}
+                                   className="form-control"
+                                   onChange={(e) => setDescription(e.target.value)} required
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="description">Image</label>
-                            <input
-                                type="file"
-                                className="form-control-file"
-                                id="image"
-
-                                value={product.image}
-                                onChange={handleInputChange}
-                                name="image"
+                            <label htmlFor="image">Image</label>
+                            <input id="image" type="file" name="image" value={image} className="form-control-file"
+                                   onChange={(e) => setImage(e.target.value)}
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="description">Category</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="category"
-                                required
-                                value={product.category}
-                                onChange={handleInputChange}
-                                name="category"
+                            <label htmlFor="category">Category</label>
+                            <input id="category" type="text" name="category" value={category} className="form-control"
+                                   onChange={(e) => setCategory(e.target.value)} required
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="description">Quantity</label>
-                            <input
-                                type="number"
-                                className="form-control"
-                                id="quantity"
-                                value={product.quantity}
-                                onChange={handleInputChange}
-                                name="quantity"
+                            <label htmlFor="quantity">Quantity</label>
+                            <input id="quantity" type="number" name="quantity" value={quantity} className="form-control"
+                                   onChange={(e) => setQuantity(e.target.value)} required
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="description">Price</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="price"
-                                required
-                                value={product.price}
-                                onChange={handleInputChange}
-                                name="price"
+                            <label htmlFor="price">Price</label>
+                            <input id="price" type="text" name="price" value={price} className="form-control"
+                                   onChange={(e) => setPrice(e.target.value)} required
                             />
                         </div>
 
                         <div className="card-footer bg-transparent text-center">
-                            <button onClick={saveProduct} className="btn btn-success">
+                            <button disabled={loader} type="submit" className="btn btn-success">
                                 Submit
                             </button>
                         </div>
@@ -138,6 +114,4 @@ const AddProduct = () => {
             )}
         </div>
     );
-};
-
-export default AddProduct;
+}
