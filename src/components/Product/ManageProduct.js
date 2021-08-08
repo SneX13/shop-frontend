@@ -4,9 +4,9 @@ import {Link} from "react-router-dom";
 
 export default function ManageProduct({product}) {
     const {key} = product[0];
-    const {title, description, imgage, price, category, quantity} = product[1];
-    return (
+    const {title, description, imgage, price} = product[1];
 
+    return (
         <div className="card shadow-sm">
             <img src={imgage ? imgage : `https://picsum.photos/300?grayscale?random=${key}`}
                  className="card-img-top" alt="..."/>

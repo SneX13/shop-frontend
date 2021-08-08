@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useHistory, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import ProductDataService from "../../services/api";
 import PageNotFound from "../404/PageNotFound";
 
@@ -9,7 +9,7 @@ export default function EditProduct() {
     const [isLoaded, setIsLoaded] = useState(false);
 
     let {id} = useParams();
-    const history = useHistory();
+    // const history = useHistory();
     const [message, setMessage] = useState("");
 
     useEffect(() => {
@@ -22,9 +22,9 @@ export default function EditProduct() {
                     setIsLoaded(true);
                     setProduct(result.data);
                 },
-                (error) => {
+                (e) => {
                     setIsLoaded(true);
-                    setError(error);
+                    setError(e);
                 }
             )
     };
@@ -47,11 +47,11 @@ export default function EditProduct() {
             .then(
                 (result) => {
                     setIsLoaded(true);
-                    setMessage("Product was successfully updated");
+                    setMessage("Game was successfully updated");
                 },
-                (error) => {
+                (e) => {
                     setIsLoaded(true);
-                    setError(error);
+                    setError(e);
                 }
             )
     };
@@ -61,11 +61,11 @@ export default function EditProduct() {
             .then(
                 (result) => {
                     setIsLoaded(true);
-                    setMessage("Product was successfully deleted");
+                    setMessage("Game was successfully deleted");
                 },
-                (error) => {
+                (e) => {
                     setIsLoaded(true);
-                    setError(error);
+                    setError(e);
                 }
             )
     };
@@ -76,6 +76,7 @@ export default function EditProduct() {
             <div className="container">
                 <div className="row my-3 justify-content-center">
                     <div className="col-12 col-md-6 ">
+                        {/*todo: add loading and error*/}
                         {message ? (
                                 <p>{message}</p>
                             )
@@ -152,11 +153,11 @@ export default function EditProduct() {
                                         </div>
                                     </div>
                                     <div className="card-footer bg-transparent text-center">
-                                        <button onClick={() => updateProduct(id)}
+                                        <button onClick={() => updateProduct()}
                                                 className="btn btn-success btn-sm mr-1">
                                             Update Game
                                         </button>
-                                        <button onClick={() => deleteProduct(id)}
+                                        <button onClick={() => deleteProduct()}
                                                 className="btn btn-danger btn-sm">
                                             Delete Game
                                         </button>

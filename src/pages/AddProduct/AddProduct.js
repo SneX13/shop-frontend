@@ -37,7 +37,8 @@ const AddProduct = () => {
             });
     };
 
-    const newProduct = () => {
+    const newProduct = (e) => {
+        e.preventDefault()
         setProduct(initialState);
         setSubmitted(false);
     };

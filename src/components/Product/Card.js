@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 export default function Card({product, link}) {
     const {key} = product[0]
-    const {title, description, image, price, category, quantity} = product[1]
+    const {title, description, image, price, category} = product[1]
 
     return (
         link ?
@@ -13,7 +13,11 @@ export default function Card({product, link}) {
                          className="card-img-top" alt="..."/>
                     <div className="card-body">
                         <h5 className="card-title text-capitalize">{title}</h5>
-                        {/*todo add product category and quantity*/}
+                        {category ?
+                            <span
+                                className="badge badge-secondary text-lowercase"> {category}</span>
+                            : " n/a"
+                        }
                         <p className="card-text"><small className="text-muted">Price: {price}</small></p>
                         <p className="card-text">{description}</p>
                     </div>
@@ -25,7 +29,6 @@ export default function Card({product, link}) {
                      className="card-img-top" alt="..."/>
                 <div className="card-body">
                     <h5 className="card-title text-capitalize">{title}</h5>
-                    {/*todo add product price*/}
                     <p className="card-text"><small className="text-muted">Price: {price} </small></p>
                     <p className="card-text">{description}</p>
                 </div>

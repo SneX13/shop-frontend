@@ -9,7 +9,7 @@ export default function ProductsList({data, dashboard}) {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        getProducts()
+        getProducts();
     }, []);
 
     const getProducts = () => {
@@ -19,9 +19,9 @@ export default function ProductsList({data, dashboard}) {
                     setIsLoaded(true);
                     setProducts(Object.entries(result.data));
                 },
-                (error) => {
+                (e) => {
                     setIsLoaded(true);
-                    setError(error);
+                    setError(e);
                 }
             )
     };
@@ -31,16 +31,16 @@ export default function ProductsList({data, dashboard}) {
                 <div className="col-12 ">
                     <h1 className="pb-4 my-4 text-center">All Games</h1>
                 </div>
-                {
-                    products.map((item, index) => (
-                        <div className="col-xs-12 col-sm-12 col-md-4 py-md-3 mb-sm-3" key={index}>
-                            {dashboard ?
-                                <ManageProduct product={item}/>
-                                :
-                                <Card product={item} link/>}
-                        </div>
-                    ))}
+                {/*todo: add loading and error*/}
+                {products.map((item, index) => (
+                    <div className="col-xs-12 col-sm-12 col-md-4 py-md-3 mb-sm-3" key={index}>
+                        {dashboard ?
+                            <ManageProduct product={item}/>
+                            :
+                            <Card product={item} link/>}
+                    </div>
+                ))}
             </section>
         </div>
     );
-};
+}

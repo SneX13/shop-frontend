@@ -7,7 +7,6 @@ export default function Dashboard() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-
         getProducts();
     }, []);
 
@@ -35,4 +34,4 @@ export default function Dashboard() {
             <ProductsList data={products} dashboard/>
         </div>
     );
-};
+}

@@ -12,14 +12,14 @@ export default function Contact() {
                     <section id="contact">
                         <ul>
                             <li className="phone">Phone number: +47 12 34 5678</li>
-                            {/*todo add correct domain for email*/}
-                            <li className="email">Epost: info@boardgames.no</li>
+                            <li className="email">Epost: info@greatgames.no</li>
                             <li className="address">Elias Smiths vei 20B, 6017 Ålesund</li>
                             <li className="time">Opening hours:</li>
                             <li>Everyday: 08:00 - 20:00</li>
                         </ul>
                     </section>
                 </div>
+                {/*todo SoMe buttons */}
             </div>
         </div>
 

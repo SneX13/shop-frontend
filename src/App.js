@@ -6,7 +6,6 @@ import Home from "./pages/Home/Home";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import './App.css';
-import AddProduct from "./pages/AddProduct/AddProduct";
 import Product from "./pages/SingleProduct/Product";
 import Login from "./pages/Login/Login";
 import ProductsList from "./pages/AllProducts/ProductsList";
@@ -15,6 +14,7 @@ import Contact from "./pages/Contact/Contact";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import EditProduct from "./pages/Dashboard/EditProduct";
 import FeaturedGames from "./pages/Featured/FeaturedGames";
+import Search from "./pages/Search/Search";
 
 class App extends Component {
     render() {
@@ -24,7 +24,6 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route path="/products" component={ProductsList}/>
-                    <Route path="/add-product" component={AddProduct}/>
                     <Route path="/product/:id" component={Product}/>
                     <Route path="/edit-product/:id" component={EditProduct}/>
                     <Route path="/login" component={Login}/>
@@ -32,6 +31,7 @@ class App extends Component {
                     <Route path="/contact" component={Contact}/>
                     <Route path="/dashboard" component={Dashboard}/>
                     <Route path="/featured" component={FeaturedGames}/>
+                    <Route path="/search/:searchTerm" component={Search}/>
                 </Switch>
                 <Footer/>
             </div>

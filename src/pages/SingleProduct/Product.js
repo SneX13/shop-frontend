@@ -20,15 +20,15 @@ export default function Product() {
                     setIsLoaded(true);
                     setProduct(result.data);
                 },
-                (error) => {
+                (e) => {
                     setIsLoaded(true);
-                    setError(error);
+                    setError(e);
                 }
             )
     };
-    /*todo write this function*/
-    const addToCart = (id) => {
-        console.log(id)
+
+    const addToCart = () => {
+        /*todo write this function*/
     }
 
     return (
@@ -42,7 +42,6 @@ export default function Product() {
                                 className="card-img-top" alt="..."/>
                             <div className="card-body">
                                 <h5 className="card-title text-capitalize">{product.title}</h5>
-                                {/*todo add product price*/}
                                 <p className="card-text"><small className="text-muted">Price: {product.price} </small>
                                 </p>
                                 <p className="card-text">{product.description}</p>

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {NavLink, useHistory} from "react-router-dom";
-import logo from "../../logo.png"
+import logo from "../../logo.png";
 
 export default function Header() {
     const [searchTerm, setSearchTerm] = useState("");
