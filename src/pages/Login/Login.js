@@ -25,7 +25,7 @@ export default function Login() {
                 <button type="submit" className="btn btn-primary">Sign in</button>
             </form>
             <div className="border-top my-3"></div>
-            <a href="#">New around here? Register</a>
+            <a href="/">New around here? Register</a>
         </div>
     );
 }

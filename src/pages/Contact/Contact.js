@@ -19,7 +19,19 @@ export default function Contact() {
                         </ul>
                     </section>
                 </div>
-                {/*todo SoMe buttons */}
+                {/*SoMe buttons have fake links */}
+                <div className="col-12 d-flex justify-content-around mt-1">
+                    <a href="https://www.facebook.com/pages/great-games" target="_blank">
+                        <i className="fab fa-2x fa-facebook" color="#3b5998"></i>
+                    </a>
+                    <a href="https://www.instagram.com/great-games/"  target="_blank">
+                        <i className="fab fa-2x fa-instagram" color=""></i>
+                    </a>
+                    <a href="https://twitter.com/great-games/" target="_blank">
+                    <i className="fab fa-2x fa-twitter" color="#00aced"></i>
+                    </a>
+                </div>
+
             </div>
         </div>
 

@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-###Getting started
+### Getting started
 1. clone or download this repository to your local computer.
 2. Launch the webapp using:
     * Npm install - To install the dependencies
